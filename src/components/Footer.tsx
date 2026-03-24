@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, ArrowUp, Youtube, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUp, Youtube, Facebook, Heart } from "lucide-react";
 import logo from "@/assets/logo.jpeg";
 
 const Footer = () => {
@@ -55,7 +55,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Info */}
           <div>
             <h4 className="font-heading font-semibold text-lg mb-4">Contact Info</h4>
             <ul className="space-y-3 text-sm opacity-80">
@@ -77,11 +77,29 @@ const Footer = () => {
 
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm opacity-60">
           <p>© {new Date().getFullYear()} Lakshmi Solar Energy. All rights reserved.</p>
-          <p>Designed with ☀️ for a brighter future</p>
+          
+          <div className="flex justify-center items-center gap-1 mt-4 md:mt-0">
+            <span>Made with</span>
+            <Heart className="inline h-4 w-4 text-red-500 mx-1" fill="currentColor" />
+            <span>by</span>
+            <a
+              href="https://staffarc.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-orange-600 font-bold hover:underline ml-1"
+            >
+              <img
+                src="https://www.staffarc.in/images/Staffarc-logo.png"
+                alt="StaffArc logo"
+                className="h-5 w-5 object-contain"
+              />
+              StaffArc
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Scroll to top */}
+      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className="absolute right-6 -top-5 p-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:scale-110 transition-transform"
