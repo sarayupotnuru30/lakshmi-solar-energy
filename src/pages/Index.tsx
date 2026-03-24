@@ -1,16 +1,126 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Sun, Shield, Zap, Users, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ScrollAnimator from "@/components/ScrollAnimator";
+import heroBg from "@/assets/hero-bg.jpg";
+import { products } from "@/data/products";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
-  );
-};
+const features = [
+  { icon: Sun, title: "6+ Years Experience", desc: "Trusted solar solutions since day one" },
+  { icon: Users, title: "Expert Technicians", desc: "Skilled team for quality installations" },
+  { icon: Shield, title: "Reliable & Durable", desc: "Long-lasting products with warranty" },
+  { icon: Zap, title: "Cost Effective", desc: "Save on electricity bills instantly" },
+];
 
-const Index = PlaceholderIndex;
+const Index = () => (
+  <div>
+    {/* Hero */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/80" />
+      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+        >
+          Lakshmi Solar Energy
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-2xl opacity-90 mb-8 max-w-2xl mx-auto"
+        >
+          Powering Your Future with Solar Solutions
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base px-8">
+            <Link to="/products">Explore Products <ChevronRight size={18} /></Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/20 text-base px-8">
+            <Link to="/enquiry">Get Enquiry</Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* Features */}
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <ScrollAnimator>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose Us?</h2>
+          <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">Trusted by hundreds of customers across Vijayawada and Andhra Pradesh</p>
+        </ScrollAnimator>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((f, i) => (
+            <ScrollAnimator key={f.title} delay={i * 0.1}>
+              <div className="bg-card rounded-xl p-6 border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center">
+                <div className="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
+                  <f.icon className="text-secondary" size={28} />
+                </div>
+                <h3 className="font-heading font-semibold text-lg mb-2">{f.title}</h3>
+                <p className="text-muted-foreground text-sm">{f.desc}</p>
+              </div>
+            </ScrollAnimator>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Featured Products */}
+    <section className="py-20 bg-muted">
+      <div className="container mx-auto px-4">
+        <ScrollAnimator>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Our Products</h2>
+          <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">Complete range of solar energy solutions</p>
+        </ScrollAnimator>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.slice(0, 8).map((p, i) => (
+            <ScrollAnimator key={p.id} delay={i * 0.05}>
+              <div className="bg-card rounded-xl overflow-hidden border border-border hover:shadow-lg transition-shadow group">
+                <div className="aspect-square overflow-hidden">
+                  <img src={p.image} alt={p.name} loading="lazy" width={512} height={512} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-heading font-semibold mb-1">{p.name}</h3>
+                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{p.description}</p>
+                  <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90">
+                    <Link to={`/enquiry?product=${p.id}`}>Enquire Now</Link>
+                  </Button>
+                </div>
+              </div>
+            </ScrollAnimator>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <Link to="/products">View All Products <ChevronRight size={18} /></Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="py-20 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 text-center">
+        <ScrollAnimator>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Go Solar?</h2>
+          <p className="opacity-90 mb-8 max-w-lg mx-auto">Get a free consultation and switch to clean, renewable energy today.</p>
+          <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground text-base px-8">
+            <Link to="/enquiry">Get Free Enquiry</Link>
+          </Button>
+        </ScrollAnimator>
+      </div>
+    </section>
+  </div>
+);
 
 export default Index;
