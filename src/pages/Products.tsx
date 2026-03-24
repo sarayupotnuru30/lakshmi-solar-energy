@@ -56,10 +56,10 @@ const Products = () => {
                     />
                   </div>
                   <div className="p-5 flex flex-col flex-1">
-                    <span className="text-xs font-medium text-secondary mb-1">{p.category}</span>
+                    <span className="text-xs font-medium text-primary mb-1">{p.category}</span>
                     <h3 className="font-heading font-semibold text-lg mb-2">{p.name}</h3>
                     <p className="text-muted-foreground text-sm mb-4 flex-1">{p.description}</p>
-                    <Button asChild className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                    <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                       <Link to={`/enquiry?product=${p.id}`}>Enquire Now</Link>
                     </Button>
                   </div>
