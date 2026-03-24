@@ -92,7 +92,7 @@ const Enquiry = () => {
                     <Label>Message</Label>
                     <Textarea className="mt-1" rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Any specific requirements..." />
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-[hsl(142,70%,40%)] hover:bg-[hsl(142,70%,35%)] text-white text-base">
+                  <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground text-base">
                     <MessageCircle size={20} /> Send via WhatsApp
                   </Button>
                 </form>
